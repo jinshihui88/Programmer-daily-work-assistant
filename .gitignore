@@ -1,4 +1,4 @@
 # Project exclude paths
-/backend-assistant/target/
+backend-assistant/target/
 frontend-assistant/node_modules/
 .idea/
