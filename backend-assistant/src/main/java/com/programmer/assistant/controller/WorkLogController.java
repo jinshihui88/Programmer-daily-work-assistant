@@ -24,9 +24,9 @@ public class WorkLogController {
      * 创建工作日志
      */
     @PostMapping
-    public ApiResponse<WorkLog> createWorkLog(@RequestBody WorkLog workLog) {
+    public ApiResponse<Object> createWorkLog(@RequestBody WorkLog workLog) {
         WorkLog savedLog = workLogService.save(workLog);
-        return ApiResponse.success("工作日志创建成功", savedLog);
+        return ApiResponse.success("工作日志创建成功");
     }
     
     /**

@@ -320,7 +320,7 @@ export default {
         const data = await learningProgressApi.getAll()
         learningProgress.value = data
       } catch (error) {
-        ElMessage.error('加载学习进度失败')
+        ElMessage.error(error.message || '加载学习进度失败')
         console.error(error)
       } finally {
         loading.value = false
@@ -415,7 +415,7 @@ export default {
         loadLearningProgress()
         loadStatistics()
       } catch (error) {
-        ElMessage.error(editingProgress.value ? '更新失败' : '创建失败')
+        ElMessage.error(error.message || (editingProgress.value ? '更新失败' : '创建失败'))
         console.error(error)
       } finally {
         saving.value = false

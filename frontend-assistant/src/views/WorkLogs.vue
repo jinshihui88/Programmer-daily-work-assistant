@@ -100,10 +100,10 @@
         <el-form-item label="工作日期" prop="workDate">
           <el-date-picker
             v-model="logForm.workDate"
-            type="datetime"
+            type="date"
             placeholder="选择工作日期"
-            format="YYYY-MM-DD HH:mm"
-            value-format="YYYY-MM-DD HH:mm:ss"
+            format="YYYY-MM-DD"
+            value-format="YYYY-MM-DD"
           />
         </el-form-item>
         <el-form-item label="内容" prop="content">
@@ -183,7 +183,7 @@ export default {
         const data = await workLogApi.getAll()
         workLogs.value = data
       } catch (error) {
-        ElMessage.error('加载工作日志失败')
+        ElMessage.error(error.message || '加载工作日志失败')
         console.error(error)
       } finally {
         loading.value = false
@@ -248,7 +248,7 @@ export default {
         showCreateDialog.value = false
         loadWorkLogs()
       } catch (error) {
-        ElMessage.error(editingLog.value ? '更新失败' : '创建失败')
+        ElMessage.error(error.message || (editingLog.value ? '更新失败' : '创建失败'))
         console.error(error)
       } finally {
         saving.value = false

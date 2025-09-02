@@ -243,7 +243,7 @@ export default {
         }
         reportData.value = data
       } catch (error) {
-        ElMessage.error('加载报表失败')
+        ElMessage.error(error.message || '加载报表失败')
         console.error(error)
       } finally {
         loading.value = false

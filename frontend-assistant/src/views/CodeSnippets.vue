@@ -240,7 +240,7 @@ export default {
         const data = await codeSnippetApi.getAll()
         codeSnippets.value = data
       } catch (error) {
-        ElMessage.error('加载代码片段失败')
+        ElMessage.error(error.message || '加载代码片段失败')
         console.error(error)
       } finally {
         loading.value = false
@@ -262,7 +262,7 @@ export default {
           const data = await codeSnippetApi.search(searchTitle.value)
           codeSnippets.value = data
         } catch (error) {
-          ElMessage.error('搜索失败')
+          ElMessage.error(error.message || '搜索失败')
         }
       } else {
         loadCodeSnippets()
@@ -333,7 +333,7 @@ export default {
         loadCodeSnippets()
         loadLanguages()
       } catch (error) {
-        ElMessage.error(editingSnippet.value ? '更新失败' : '创建失败')
+        ElMessage.error(error.message || (editingSnippet.value ? '更新失败' : '创建失败'))
         console.error(error)
       } finally {
         saving.value = false
