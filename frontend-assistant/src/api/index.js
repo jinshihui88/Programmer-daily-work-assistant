@@ -22,10 +22,38 @@ api.interceptors.request.use(
 // 响应拦截器
 api.interceptors.response.use(
   response => {
-    return response.data
+    // 适配新的后端返回格式 {code, message, result}
+    const { data } = response
+    
+    // 如果是新格式的响应
+    if (data && typeof data === 'object' && 'code' in data && 'message' in data && 'result' in data) {
+      // 检查响应状态
+      if (data.code === '200') {
+        return data.result // 返回实际数据
+      } else {
+        // 业务错误
+        const error = new Error(data.message || '操作失败')
+        error.code = data.code
+        return Promise.reject(error)
+      }
+    }
+    
+    // 兼容旧格式
+    return data
   },
   error => {
     console.error('API请求错误:', error)
+    
+    // 处理HTTP错误
+    if (error.response) {
+      const { data } = error.response
+      
+      // 如果错误响应也是新格式
+      if (data && typeof data === 'object' && 'message' in data) {
+        error.message = data.message
+      }
+    }
+    
     return Promise.reject(error)
   }
 )
