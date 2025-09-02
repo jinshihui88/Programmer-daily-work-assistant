@@ -95,7 +95,7 @@ public class ReportService {
         // 按日期分组统计工作日志
         Map<String, Long> dailyLogCount = new HashMap<>();
         monthlyLogs.forEach(log -> {
-            String date = log.getWorkDate().toLocalDate().toString();
+            String date = log.getWorkDate().toString();
             dailyLogCount.put(date, dailyLogCount.getOrDefault(date, 0L) + 1);
         });
         report.put("dailyLogCount", dailyLogCount);

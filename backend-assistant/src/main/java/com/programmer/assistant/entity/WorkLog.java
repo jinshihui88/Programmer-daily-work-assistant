@@ -1,11 +1,19 @@
 package com.programmer.assistant.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
  * 工作日志实体
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName("work_log")
 public class WorkLog {
     
@@ -17,7 +25,7 @@ public class WorkLog {
     private String content;
     
     @TableField("work_date")
-    private LocalDateTime workDate;
+    private LocalDate workDate;
     
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -25,61 +33,12 @@ public class WorkLog {
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
     
-    // 构造函数
-    public WorkLog() {}
-    
-    public WorkLog(String title, String content, LocalDateTime workDate) {
+    /**
+     * 自定义构造函数
+     */
+    public WorkLog(String title, String content, LocalDate workDate) {
         this.title = title;
         this.content = content;
         this.workDate = workDate;
-    }
-    
-    // Getter和Setter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getContent() {
-        return content;
-    }
-    
-    public void setContent(String content) {
-        this.content = content;
-    }
-    
-    public LocalDateTime getWorkDate() {
-        return workDate;
-    }
-    
-    public void setWorkDate(LocalDateTime workDate) {
-        this.workDate = workDate;
-    }
-    
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-    
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-    
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
     }
 }

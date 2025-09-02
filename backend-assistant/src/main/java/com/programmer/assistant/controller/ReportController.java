@@ -1,8 +1,8 @@
 package com.programmer.assistant.controller;
 
+import com.programmer.assistant.common.ApiResponse;
 import com.programmer.assistant.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -22,26 +22,26 @@ public class ReportController {
      * 生成周报
      */
     @GetMapping("/weekly")
-    public ResponseEntity<Map<String, Object>> generateWeeklyReport() {
+    public ApiResponse<Map<String, Object>> generateWeeklyReport() {
         Map<String, Object> report = reportService.generateWeeklyReport();
-        return ResponseEntity.ok(report);
+        return ApiResponse.success("生成周报成功", report);
     }
     
     /**
      * 生成月报
      */
     @GetMapping("/monthly")
-    public ResponseEntity<Map<String, Object>> generateMonthlyReport() {
+    public ApiResponse<Map<String, Object>> generateMonthlyReport() {
         Map<String, Object> report = reportService.generateMonthlyReport();
-        return ResponseEntity.ok(report);
+        return ApiResponse.success("生成月报成功", report);
     }
     
     /**
      * 获取仪表板数据
      */
     @GetMapping("/dashboard")
-    public ResponseEntity<Map<String, Object>> getDashboardData() {
+    public ApiResponse<Map<String, Object>> getDashboardData() {
         Map<String, Object> dashboard = reportService.generateDashboardData();
-        return ResponseEntity.ok(dashboard);
+        return ApiResponse.success("获取仪表板数据成功", dashboard);
     }
 }
