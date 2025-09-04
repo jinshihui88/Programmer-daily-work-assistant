@@ -13,5 +13,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(ElementPlus)
+//安装router插件
 app.use(router)
 app.mount('#app')

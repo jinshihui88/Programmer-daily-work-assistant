@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "程序员工作助手前端",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.3.4",
@@ -16,7 +16,8 @@
     "@element-plus/icons-vue": "^2.1.0"
   },
   "devDependencies": {
-    "@vue/cli-service": "^5.0.8",
+    "vite": "^4.4.5",
+    "@vitejs/plugin-vue": "^4.2.3",
     "@vue/compiler-sfc": "^3.3.4"
   },
   "browserslist": [

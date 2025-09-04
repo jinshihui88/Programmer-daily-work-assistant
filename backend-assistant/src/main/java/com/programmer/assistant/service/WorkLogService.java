@@ -5,7 +5,9 @@ import com.programmer.assistant.mapper.WorkLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 /**
@@ -75,8 +77,16 @@ public class WorkLogService {
      * 获取本周工作日志
      */
     public List<WorkLog> getThisWeekLogs() {
-        LocalDateTime startOfWeek = LocalDateTime.now().minusDays(7);
-        LocalDateTime endOfWeek = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        
+        // 获取本周周一的开始时间（00:00:00）
+        LocalDateTime startOfWeek = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
+                .withHour(0).withMinute(0).withSecond(0).withNano(0);
+        
+        // 获取本周周日的结束时间（23:59:59）
+        LocalDateTime endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))
+                .withHour(23).withMinute(59).withSecond(59).withNano(999999999);
+        
         return findByDateRange(startOfWeek, endOfWeek);
     }
     
@@ -84,8 +94,16 @@ public class WorkLogService {
      * 获取本月工作日志
      */
     public List<WorkLog> getThisMonthLogs() {
-        LocalDateTime startOfMonth = LocalDateTime.now().minusDays(30);
-        LocalDateTime endOfMonth = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        
+        // 获取本月第一天的开始时间（00:00:00）
+        LocalDateTime startOfMonth = now.with(TemporalAdjusters.firstDayOfMonth())
+                .withHour(0).withMinute(0).withSecond(0).withNano(0);
+        
+        // 获取本月最后一天的结束时间（23:59:59）
+        LocalDateTime endOfMonth = now.with(TemporalAdjusters.lastDayOfMonth())
+                .withHour(23).withMinute(59).withSecond(59).withNano(999999999);
+        
         return findByDateRange(startOfMonth, endOfMonth);
     }
 }
