@@ -8,6 +8,7 @@
             <el-icon><Monitor /></el-icon>
             程序员工作助手
           </h1>
+
           <el-menu
             :default-active="$route.path"
             class="nav-menu"
@@ -18,26 +19,32 @@
               <el-icon><Odometer /></el-icon>
               <span>仪表板</span>
             </el-menu-item>
+
             <el-menu-item index="/work-logs">
               <el-icon><Document /></el-icon>
               <span>工作日志</span>
             </el-menu-item>
+
             <el-menu-item index="/code-snippets">
               <el-icon><Collection /></el-icon>
               <span>代码片段</span>
             </el-menu-item>
+
             <el-menu-item index="/learning">
               <el-icon><Reading /></el-icon>
               <span>学习进度</span>
             </el-menu-item>
+
             <el-menu-item index="/pomodoro">
               <el-icon><Timer /></el-icon>
               <span>番茄钟</span>
             </el-menu-item>
+
             <el-menu-item index="/reports">
               <el-icon><DataAnalysis /></el-icon>
               <span>报表</span>
             </el-menu-item>
+
           </el-menu>
         </div>
       </el-header>
